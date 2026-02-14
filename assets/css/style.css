@@ -1,0 +1,477 @@
+/**
+ * Valentine's Day Puzzle Game Styles
+ * Organized with BEM-like methodology and CSS custom properties
+ */
+
+/* ============================================================================
+   FONTS
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Inter:wght@400;500;600&display=swap');
+
+/* ============================================================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================================================ */
+
+:root {
+    /* Colors */
+    --color-primary: #c94c76;
+    --color-secondary: #3d9dc0;
+    --color-accent: #d64b6a;
+    --color-accent-alt: #6b5ed6;
+    --color-success: #4caf50;
+    --color-text-dark: #1f1f1f;
+    --color-text-medium: #2a2a2a;
+    --color-text-light: #333;
+    --color-white: #ffffff;
+    
+    /* Surfaces */
+    --surface-primary: rgba(255, 255, 255, 0.9);
+    --surface-secondary: rgba(255, 255, 255, 0.75);
+    
+    /* Background */
+    --bg-gradient: linear-gradient(140deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    --bg-image: none;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-2xl: 40px;
+    
+    /* Border Radius */
+    --radius-sm: 2px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.25);
+    --shadow-xl: 0 10px 24px rgba(0, 0, 0, 0.2);
+    --shadow-2xl: 0 20px 60px rgba(0, 0, 0, 0.5);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.4s ease;
+    
+    /* Z-Index Scale */
+    --z-base: 1;
+    --z-dropdown: 10;
+    --z-sticky: 50;
+    --z-fixed: 100;
+    --z-modal-backdrop: 1000;
+    --z-modal: 1001;
+    
+    /* Typography */
+    --font-primary: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-display: "Bagel Fat One", serif;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+}
+
+/* ============================================================================
+   RESET & BASE STYLES
+   ============================================================================ */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-normal);
+    font-style: normal;
+    background-color: var(--color-primary);
+    background-image: var(--bg-gradient), var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: var(--color-text-dark);
+    overflow: hidden;
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ============================================================================ */
+
+@keyframes swapPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes confetti {
+    0% {
+        transform: translate3d(var(--drift), -100%, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate3d(calc(var(--drift) * -1), 100vh, 0) rotate(360deg);
+    }
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.hero {
+    text-align: center;
+    color: var(--color-white);
+    padding: var(--spacing-sm) 0 var(--spacing-xs) 0;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    margin: 0;
+    font-size: clamp(1.5rem, 5vw, 2.8rem);
+    letter-spacing: 1px;
+    text-shadow: var(--shadow-sm);
+}
+
+/* ============================================================================
+   GAME SECTION
+   ============================================================================ */
+
+.game-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.btn {
+    min-height: 48px;
+    min-width: 210px;
+    padding: 0 18px;
+    border: none;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: var(--font-weight-medium);
+    transition: all var(--transition-fast);
+    background: var(--surface-primary);
+    color: var(--color-text-medium);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-xl);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--color-accent-alt);
+    outline-offset: 2px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-accent-alt) 0%, var(--color-accent) 100%);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary svg {
+    flex-shrink: 0;
+}
+
+/* ============================================================================
+   PUZZLE
+   ============================================================================ */
+
+.puzzle-frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: calc(100vh - 50px);
+    padding: 0;
+    margin-top: -1.5rem;
+}
+
+.puzzle-grid {
+    display: grid;
+    gap: 2px;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    backdrop-filter: blur(20px);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Puzzle Pieces */
+
+.puzzle-piece {
+    background-size: cover;
+    background-position: center;
+    background-color: var(--color-white);
+    cursor: grab;
+    transition: all var(--transition-fast);
+    position: relative;
+    border: 2px solid transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    touch-action: none;
+}
+
+.puzzle-piece:hover {
+    transform: scale(1.05);
+    z-index: var(--z-dropdown);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.puzzle-piece:focus-visible {
+    outline: 3px solid var(--color-accent-alt);
+    outline-offset: 2px;
+    z-index: var(--z-dropdown);
+}
+
+.puzzle-piece.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+    transform: scale(0.95) rotate(3deg);
+    border-color: #667eea;
+    z-index: var(--z-fixed);
+}
+
+.puzzle-piece.correct {
+    border-color: var(--color-success) !important;
+    pointer-events: none;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.puzzle-piece.highlight {
+    background-color: rgba(102, 126, 234, 0.1);
+    border-color: #667eea !important;
+    box-shadow: 
+        0 0 20px rgba(102, 126, 234, 0.6), 
+        inset 0 0 20px rgba(102, 126, 234, 0.2);
+    transform: scale(1.08);
+    z-index: var(--z-sticky);
+}
+
+/* ============================================================================
+   MODAL
+   ============================================================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: var(--z-modal-backdrop);
+    animation: fadeIn var(--transition-medium);
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--color-white);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-xl);
+    max-width: 600px;
+    width: 90%;
+    animation: slideIn var(--transition-slow);
+    box-shadow: var(--shadow-2xl);
+    z-index: var(--z-modal);
+}
+
+/* Modal Header */
+
+.modal-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.modal-header h2 {
+    color: var(--color-accent-alt);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Modal Body */
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body p {
+    font-size: 1.2rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+}
+
+.completed-image {
+    margin: var(--spacing-lg) 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.completed-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Modal Footer */
+
+.modal-footer {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+    flex-wrap: wrap;
+}
+
+/* ============================================================================
+   CONFETTI
+   ============================================================================ */
+
+.confetti {
+    position: fixed;
+    top: -12px;
+    width: var(--size, 10px);
+    height: var(--size, 10px);
+    background: #f0f;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        padding: var(--spacing-lg);
+        width: 95%;
+    }
+    
+    .btn {
+        min-width: 160px;
+        font-size: 0.9rem;
+    }
+    
+    .puzzle-frame {
+        margin-top: -1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: var(--spacing-xs) 0;
+    }
+    
+    .modal-footer {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+
+:focus-visible {
+    outline: 2px solid var(--color-accent-alt);
+    outline-offset: 2px;
+}
+
+/* Screen reader only text */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

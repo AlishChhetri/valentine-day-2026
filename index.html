@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Valentine's Day Puzzle Game - A special interactive puzzle for Sylvia">
+    <meta name="theme-color" content="#c94c76">
+    
+    <title>Happy Valentine's Day Sylvia</title>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="hero" role="banner">
+        <h1>Happy Valentine's Day Sylvia</h1>
+    </header>
+
+    <!-- Main Game Section -->
+    <main id="gameSection" class="game-section" role="main">
+        <div class="puzzle-frame">
+            <div 
+                id="puzzleGrid" 
+                class="puzzle-grid" 
+                role="application"
+                aria-label="Drag and drop puzzle game"
+                aria-live="polite"
+            ></div>
+        </div>
+    </main>
+
+    <!-- Win Modal -->
+    <div 
+        id="winModal" 
+        class="modal" 
+        role="dialog" 
+        aria-labelledby="modalTitle"
+        aria-modal="true"
+    >
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 id="modalTitle">Congratulations</h2>
+            </header>
+            
+            <div class="modal-body">
+                <p>You completed the puzzle.</p>
+                <div class="completed-image">
+                    <img 
+                        id="completedImage" 
+                        src="" 
+                        alt="Completed puzzle image"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+            
+            <footer class="modal-footer">
+                <button 
+                    id="downloadBtn" 
+                    class="btn btn-primary"
+                    aria-label="Download image pack"
+                >
+                    <svg 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        width="20" 
+                        height="20" 
+                        viewBox="0 0 24 24" 
+                        fill="none"
+                        stroke="currentColor" 
+                        stroke-width="2" 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Download Image Pack</span>
+                </button>
+                
+                <button 
+                    id="playAgainBtn" 
+                    class="btn"
+                    aria-label="Play puzzle again"
+                >
+                    Play Again
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/puzzle.js"></script>
+</body>
+
+</html>
